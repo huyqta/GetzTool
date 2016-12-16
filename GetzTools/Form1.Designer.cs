@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabSMS = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -54,10 +55,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rdPushPublic = new System.Windows.Forms.RadioButton();
             this.rdPushInternal = new System.Windows.Forms.RadioButton();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabMain.SuspendLayout();
             this.tabSMS.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -210,6 +212,7 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBox2);
+            this.tabPage2.Controls.Add(this.richTextBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -302,7 +305,7 @@
             this.txtListDevicePush.Name = "txtListDevicePush";
             this.txtListDevicePush.Size = new System.Drawing.Size(629, 115);
             this.txtListDevicePush.TabIndex = 3;
-            this.txtListDevicePush.Text = "d4ad5b4b4058db21923816499bfbd90ff09898e2d396e06dd82ca8befaa02b06";
+            this.txtListDevicePush.Text = resources.GetString("txtListDevicePush.Text");
             // 
             // label5
             // 
@@ -346,6 +349,16 @@
             this.rdPushInternal.UseVisualStyleBackColor = true;
             this.rdPushInternal.CheckedChanged += new System.EventHandler(this.rdPushNotification_CheckedChanged);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(734, 507);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Sending Email";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -361,15 +374,15 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
-            // tabPage1
+            // richTextBox1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(734, 507);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Sending Email";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(12, 293);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(699, 193);
+            this.richTextBox1.TabIndex = 5;
+            this.richTextBox1.Text = "";
             // 
             // frmMain
             // 
@@ -431,6 +444,7 @@
         private System.Windows.Forms.Label label7;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 

@@ -117,16 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="txtListDevicePush.Text" xml:space="preserve">
-    <value>d4ad5b4b4058db21923816499bfbd90ff09898e2d396e06dd82ca8befaa02b06
-b0aad2d31875b143675f87887e6df08616354f98aa3e08f01a033d33ce8b3c7c
-e89d2c0ac3e0c07bf3dd7bd3e61cd9f5c17b9674e46586b5b8d71c767893287a
-23f4dbd84d4564c15874e1260ac431ad7bb3d9bdbd565aca102c3367ac9e1752</value>
-  </data>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>133, 17</value>
-  </metadata>
 </root>

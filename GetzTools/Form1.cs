@@ -16,7 +16,7 @@ namespace GetzTools
         private SmsObject smsObj;
         private PushNotificationObject pushObj;
         public static frmMain _frmMain;
-
+        string resultPush = "";
         public frmMain()
         {
             InitializeComponent();
@@ -165,22 +165,25 @@ namespace GetzTools
             UpdateEnvironmentPushNotification();
         }
 
-        private void btnPushNotification_Click(object sender, EventArgs e)
+        private async void btnPushNotification_Click(object sender, EventArgs e)
         {
             UpdateEnvironmentPushNotification();
 
             btnPushNotification.Enabled = false;
             btnPushNotification.Text = "PUSHING...";
             ///////////////////////////////
-            AllocConsole();
-            SendIOSPushNotify(pushObj);
+            //AllocConsole();
+            await SendIOSPushNotify(pushObj);
+            UpdatePushResults(resultPush);
+            //SendIOSPushNotify(pushObj);
             ///////////////////////////////
             btnPushNotification.Text = "PUSH";
             btnPushNotification.Enabled = true;
         }
 
-        public PushNotificationResponse SendIOSPushNotify(PushNotificationObject pushObject)
+        public async Task SendIOSPushNotify(PushNotificationObject pushObject)
         {
+            resultPush = "";
             //Task<string> getStringTask = client.GetStringAsync("start");
             PushNotificationResponse response = new PushNotificationResponse();
             WebClient wc1 = new WebClient();
@@ -207,12 +210,15 @@ namespace GetzTools
                         // Deal with the failed notification
                         var apnsNotification = notificationException.Notification;
                         var statusCode = notificationException.ErrorStatusCode;
-                        System.Console.WriteLine($"Apple Notification Failed: ID={apnsNotification.Identifier}, Code={statusCode}");
+                        resultPush += ($"Apple Notification Failed: ID={apnsNotification.Identifier}, Code={statusCode}") + Environment.NewLine;
+                        
+                        //System.Console.WriteLine($"Apple Notification Failed: ID={apnsNotification.Identifier}, Code={statusCode}");
                     }
                     else
                     {
                         // Inner exception might hold more useful information dows.Forms.RichTextBox)mFormMain.Controls.Find("txtPushResults", true)[0];
-                        System.Console.WriteLine($"Apple Notification Failed for some unknown reason : {ex.InnerException}");
+
+                        resultPush = ($"Apple Notification Failed for some unknown reason : {ex.InnerException}") + Environment.NewLine;
                     }
 
                     // Mark it as handled
@@ -222,7 +228,7 @@ namespace GetzTools
 
             apnsBroker.OnNotificationSucceeded += (notification) =>
             {
-                System.Console.WriteLine("Apple Notification Sent!");
+                resultPush = ("Apple Notification Sent!") + Environment.NewLine;
             };
 
             // Start the broker
@@ -230,6 +236,7 @@ namespace GetzTools
             string data = "{\"aps\":{\"badge\":" + pushObject.Badge + ", \"alert\": \"" + pushObject.Alert + "\", \"sound\": \"" + pushObject.AppleDeviceSoundNotify + "\"}}";
             foreach (var deviceToken in pushObject.ListDevice)
             {
+                if (string.IsNullOrEmpty(deviceToken) || deviceToken.Equals("\r") || deviceToken.Equals("\n")) continue;
                 // Queue a notification to send
                 apnsBroker.QueueNotification(new ApnsNotification
                 {
@@ -242,8 +249,14 @@ namespace GetzTools
             // done with the broker
             apnsBroker.Stop();
             response.Message = "Success!";
-            return response;
+            return;
         }
 
+        private void UpdatePushResults(string msg)
+        {
+            richTextBox1.AppendText(msg);
+            //richTextBox1.AppendText(msg + Environment.NewLine);
+
+        }
     }
 }
